@@ -1,0 +1,48 @@
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="name">Full Name</label>
+      <input type="text" id="name" formControlName="name" placeholder="Enter your name" />
+    </div>
+
+    <div class="form-group">
+      <label for="titleHome">Title</label>
+      <input type="text" id="titleHome" formControlName="titleHome" placeholder="Enter your title" />
+    </div>
+
+    <div class="form-group">
+      <label for="cvLink">CV Link</label>
+      <input type="url" id="cvLink" formControlName="cvLink" placeholder="Enter your CV link" />
+    </div>
+
+    <div class="form-group">
+      <label for="aboutMe">About Me</label>
+      <textarea id="aboutMe" formControlName="aboutMe" placeholder="Enter information about yourself"></textarea>
+    </div>
+
+    <div class="form-group">
+      <label for="softSkill">Soft Skills</label>
+      <input type="text" id="softSkill" formControlName="softSkill" placeholder="Enter your soft skills" />
+    </div>
+    <div class="form-group">
+      <label for="techSkill">Technical Skills</label>
+      <input type="text" id="techSkill" formControlName="techSkill" placeholder="Enter your technical skills" />
+    </div>
+
+<!-- Projects -->
+  <div formArrayName="projects">
+    <label for="projects">Projects</label>
+    <div *ngFor="let project of projects.controls; let i = index" [formGroupName]="i">
+      <input formControlName="projectTitle" placeholder="Project Title" />
+      <textarea formControlName="projectDescription" placeholder="Project Description"></textarea>
+      <input formControlName="projectLink" placeholder="Project Live Link" />
+      <button type="button" (click)="removeProject(i)">Remove</button>
+    </div>
+    <button type="button" (click)="addProject()">Add Project</button>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+
+
+
+
